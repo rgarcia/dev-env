@@ -1,3 +1,6 @@
+include:
+  - git
+
 {% set emacs_version = '24.5' %}
 emacs:
   cmd.run:
@@ -23,3 +26,19 @@ emacs:
       - libncurses5-dev
       - texinfo
       - libxpm-dev
+
+prelude-git-clone:
+  git.latest:
+    - name: https://github.com/bbatsov/prelude.git
+    - rev: master
+    - target: /home/{{ pillar.user }}/.prelude
+    - user: {{ pillar.user }}
+    - require:
+      - pkg: git
+      - ssh_known_hosts: github.com
+
+/home/{{ pillar.user }}/.emacs.d:
+  file.symlink:
+    - target: /home/{{ pillar.user }}/.prelude
+
+# TODO: copy my .emacs file from github

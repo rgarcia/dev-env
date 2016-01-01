@@ -1,7 +1,7 @@
 base:
   '*':
     - envs
-    #- docker
+    - docker
     - emacs
     - git
     - go

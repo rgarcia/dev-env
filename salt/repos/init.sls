@@ -1,7 +1,7 @@
 include:
   - git
 
-{% set gopathme = '/home/' + pillar['user'] + '/go/src/github.com/rgarcia' %}
+{% set gopathme = '/home/' + pillar.user + '/go/src/github.com/rgarcia' %}
 
 {{ gopathme }}:
   file.directory:

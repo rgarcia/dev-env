@@ -14,7 +14,7 @@ python-tools:
 
 python-tools-bash-profile:
   file.append:
-    - name: /home/{{ salt['pillar.get']('user') }}/.bash_profile
+    - name: /home/{{ pillar.user }}/.bash_profile
     - text:
       - source /usr/local/bin/virtualenvwrapper.sh
     - require:
@@ -22,7 +22,7 @@ python-tools-bash-profile:
 
 source-virt:
   cmd.run:
-    - user: {{ salt['pillar.get']('user') }}
+    - user: {{ pillar.user }}
     - shell: /bin/bash
     - names:
       - source ~/.bash_profile

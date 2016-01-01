@@ -5,9 +5,8 @@ git:
   cmd.run:
     - user: {{ pillar.user }}
     - names:
-      - git config --global user.name "{{ salt['pillar.get']('name') }}"
-      - git config --global user.email "{{ salt['pillar.get']('email') }}"
-      - echo "setting up git config"
+      - git config --global user.name "{{ pillar.name }}"
+      - git config --global user.email "{{ pillar.email }}"
 
 github.com:
   ssh_known_hosts.present:

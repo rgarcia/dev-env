@@ -18,14 +18,14 @@ go:
   pkg.installed:
     - name: mercurial # many 3rd party go dependencies (e.g. many on code.google.com) are mercurial repos
 
-/home/{{ salt['pillar.get']('user') }}/go:
+/home/{{ pillar.user }}/go:
   file.directory:
-    - user: {{ salt['pillar.get']('user') }}
+    - user: {{ pillar.user }}
     - makedirs: True
 
 go-bash-profile:
   file.append:
-    - name: /home/{{ salt['pillar.get']('user') }}/.bash_profile
+    - name: /home/{{ pillar.user }}/.bash_profile
     - text:
       - export GOPATH=~/go
       - export PATH=$PATH:$GOPATH/bin

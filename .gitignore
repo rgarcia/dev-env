@@ -1,0 +1,4 @@
+*.pyc
+pillar/personal.sls
+.vagrant/
+*~

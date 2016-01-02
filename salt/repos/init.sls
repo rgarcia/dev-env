@@ -34,4 +34,8 @@ include:
     - require:
       - file: /usr/local/bin/reposync
 
-# todo: run reposync
+run-reposync:
+  cmd.run:
+    - name: "reposync --archivedir ~/go/src/github.com/rgarcia/.archive -dir ~/go/src/github.com/rgarcia -user rgarcia -token {{ pillar.github_api_token }}"
+    - require:
+      - file: /usr/local/bin/reposync

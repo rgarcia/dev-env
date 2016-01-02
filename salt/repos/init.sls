@@ -37,5 +37,7 @@ include:
 run-reposync:
   cmd.run:
     - name: "reposync --archivedir ~/go/src/github.com/rgarcia/.archive -dir ~/go/src/github.com/rgarcia -user rgarcia -token {{ pillar.github_api_token }}"
+    - user: {{ pillar.user }}
     - require:
       - file: /usr/local/bin/reposync
+      - pkg: git

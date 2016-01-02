@@ -22,6 +22,8 @@ go:
   file.directory:
     - user: {{ pillar.user }}
     - makedirs: True
+    - require:
+      - cmd: go
 
 go-bash-profile:
   file.append:
@@ -29,3 +31,20 @@ go-bash-profile:
     - text:
       - export GOPATH=~/go
       - export PATH=$PATH:$GOPATH/bin
+    - require:
+      - cmd: go
+
+{% for util in [
+  "golang.org/x/tools/cmd/goimports",
+  "github.com/rogpeppe/godef",
+  "github.com/nsf/gocode"
+] %}
+go-get-{{ util }}:
+  cmd.run:
+    - name: GOPATH=~/go go get -u {{ util }}
+    - user: {{pillar.user}}
+    - env:
+      - GOPATH: /home/{{ pillar.user }}/go
+    - require:
+      - file: /home/{{ pillar.user }}/go
+{% endfor %}

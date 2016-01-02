@@ -29,7 +29,7 @@ emacs:
 
 prelude-git-clone:
   git.latest:
-    - name: https://github.com/bbatsov/prelude.git
+    - name: https://github.com/rgarcia/prelude.git
     - rev: master
     - target: /home/{{ pillar.user }}/.prelude
     - user: {{ pillar.user }}
@@ -40,5 +40,3 @@ prelude-git-clone:
 /home/{{ pillar.user }}/.emacs.d:
   file.symlink:
     - target: /home/{{ pillar.user }}/.prelude
-
-# TODO: copy my .emacs file from github

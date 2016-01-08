@@ -10,9 +10,9 @@ fi
 
 echo "About to run state: '$1'"
 if [[ $1 == 'highstate' ]]; then
-  sudo salt-call --local -m ./salt/_modules state.highstate
+  sudo salt-call --local --file-root=`pwd`/salt --pillar-root=`pwd`/pillar -m `pwd`/salt/_modules state.highstate
 else
-  sudo salt-call --local -m ./salt/_modules state.sls $1
+  sudo salt-call --local --file-root=`pwd`/salt --pillar-root=`pwd`/pillar -m `pwd`/salt/_modules state.sls $1
 fi
 
 # To run a specific module's function with custom arugments from the command line:
